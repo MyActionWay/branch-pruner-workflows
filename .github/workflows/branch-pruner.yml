@@ -17,7 +17,7 @@ name: 'Branch-Pruner'
 # TOKEN and INPUTS as environmental variables
 env:
   # Token for all triggers (INSERT ONLY THE NAME NEVER THE REAL VALUE)
-  TOKEN: #  insert {{ secrets.<TOKEN_NAME> }} and replace <TOKEN_NAME>
+  TOKEN: #  insert ${{ secrets.<TOKEN_NAME> }} and replace <TOKEN_NAME>
   # 
   # Inputs for not manually triggered workflows (if empty, defaults are used)
   NEW-FIRST-COMMIT: # e.g. commit-hash or HEAD~N etc.
@@ -75,7 +75,7 @@ jobs:
           token: ${{ env.TOKEN }}
           fetch-depth: '0'
           ref: ${{ github.event.inputs.branch || env.BRANCH || env.DEFAULT-BRANCH }}
-      - uses: myactionway/branch-pruner@v1
+      - uses: myactionway/branch-pruner-action@v1.0
         with:
           new-first-commit: ${{ github.event.inputs.new-first-commit || env.NEW-FIRST-COMMIT }}
           branch: ${{ github.event.inputs.branch || env.BRANCH || env.DEFAULT-BRANCH }}
