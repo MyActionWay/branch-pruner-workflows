@@ -34,7 +34,7 @@ But the Drawbacks are:
 
 Oh, you're still here then let's do it.
 
-1. add the [`branch-pruner.yml`](https://github.com/myactionway/branch-pruner-workflow/.github/workflows/branch-pruner.yml "Get it") workflow file to a repository
+1. add the [`branch-pruner.yml`](https://github.com/MyActionWay/branch-pruner-workflow/blob/master/.github/workflows/branch-pruner.yml "Get it") workflow file to a repository
 	* the path has to be `.github/workflows/branch-pruner.yml`
 	* it doesn't have to be the repository you want to prune; e.&nbsp;g., you can simply [fork](https://github.com/myactionway/branch-pruner-workflow/fork "fork it") the `myactionway/branch-pruner-workflow` repository
 2. create a new encrypted repository secret [[procedure]](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository "Learn how")
