@@ -1,0 +1,88 @@
+# Branch-Pruner-Advanced | GitHub Action Workflow
+# 
+# Description: Truncates the old commit history of multiple selected target branches
+# Author: Sitdisch
+# Source: https://github.com/myactionway/branch-pruner-workflows
+# License: MIT
+# Copyright (c) 2021 Sitdisch
+# 
+# CAUTION: IT IS A POWERFUL TOOL AND YOU USE IT AT YOUR OWN RISK. CUTS CAN'T BE UNDONE.
+
+name: 'Branch-Pruner-Advanced'
+
+########################################################################
+# DEFINE YOUR DEFAULTS (INPUTS & TRIGGERS) IN THE FOLLOWING
+########################################################################
+
+# INPUTS as environmental variables (env)
+env:
+  TOKEN_NAME: # target token name; insert only the name never the real value e.g. 'BRANCH_PRUNER_TOKEN'
+  # To change predefined values, just override them
+  REPOSITORY: ${{ github.repository }} # target repository; predefined is the repo with this file
+  USER_NAME: 'github-actions[bot]' # user who should commit
+  USER_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+
+# TRIGGERS
+on:
+  # push:
+  # schedule: # Check your schedule here => https://crontab.guru/
+  #   - cron: '00 23 28 * *' # e.g. every 28th day of a month at 23:00
+  workflow_dispatch:
+    # No predefined inputs; The env defined in this file are used instead when this trigger is triggered.
+
+########################################################################
+# YOU CAN JUMP TO THE FIRST TARGET BRANCH DEFINITION BELOW
+########################################################################
+
+jobs:
+  branch-pruner-advanced:
+    name: ${{ matrix.NAME }}
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          ##############################################################
+          # FIRST TARGET BRANCH | DEFINE YOUR ENV IN THE FOLLOWING
+          ##############################################################
+          - NAME: # e.g. 'Pruning Branch 1'
+            NEW_FIRST_COMMIT: # e.g. commit-hash or HEAD~N etc.
+            BRANCH: # branch to be pruned e.g. 'master'
+            # Your defaults will be used unless you redefine a following env
+            # TOKEN_NAME:
+            # REPOSITORY:
+            # USER_NAME:
+            # USER_EMAIL:
+          ##############################################################
+          # SECOND TARGET BRANCH | DEFINE YOUR ENV IN THE FOLLOWING
+          ##############################################################
+          - NAME: # e.g. 'Pruning Branch 2'
+            NEW_FIRST_COMMIT: # e.g. commit-hash or HEAD~N etc.
+            BRANCH: # branch to be pruned e.g. 'test'
+            # Your defaults will be used unless you redefine a following env
+            # TOKEN_NAME:
+            # REPOSITORY:
+            # USER_NAME:
+            # USER_EMAIL:
+          ##############################################################
+          # THIRD TARGET BRANCH | FEEL FREE TO ADD MORE TARGET BRANCHES
+          ##############################################################
+          # 
+          # ...
+          # 
+    ####################################################################
+    # THAT'S IT; YOU DON'T HAVE TO DEFINE ANYTHING IN THE FOLLOWING
+    ####################################################################
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          repository: ${{ matrix.REPOSITORY || env.REPOSITORY }}
+          token: ${{ secrets[matrix.TOKEN_NAME] || secrets[env.TOKEN_NAME] }}
+          fetch-depth: '0'
+          ref: ${{ matrix.BRANCH || env.BRANCH }}
+      - uses: myactionway/branch-pruner-action@v2.0
+        with:
+          new_first_commit: ${{ matrix.NEW_FIRST_COMMIT }}
+          branch: ${{ matrix.BRANCH || env.BRANCH }}
+          user_name: ${{ matrix.USER_NAME || env.USER_NAME }}
+          user_email: ${{ matrix.USER_EMAIL || env.USER_EMAIL }}
