@@ -47,7 +47,7 @@ jobs:
           ##############################################################
           - NAME: # e.g. 'Pruning Branch 1'
             NEW_FIRST_COMMIT: # e.g. commit-hash or HEAD~N etc.
-            BRANCH: # branch to be pruned e.g. 'master'
+            BRANCH: # branch to be pruned e.g. 'main'
             # Your defaults will be used unless you redefine a following env
             # TOKEN_NAME:
             # REPOSITORY:

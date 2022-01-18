@@ -20,13 +20,13 @@ env:
   TOKEN_NAME: # target token name; insert only the name never the real value e.g. 'BRANCH_PRUNER_TOKEN'
   # If any of the following env is blank, a default value is used instead
   REPOSITORY: # target repository e.g. 'dummy/mytargetrepo'
-  BRANCH: # branch to be pruned e.g 'master'
+  BRANCH: # branch to be pruned e.g 'main'
   USER_NAME: # user who should commit e.g. 'dummy'
   USER_EMAIL: # e.g. 'dummy@gmail.com'
   # 
   # THAT'S IT; JUMP TO THE TRIGGERS;
   DEFAULT_REPOSITORY: ${{ github.repository }} # repo with this file
-  DEFAULT_BRANCH: 'master'
+  DEFAULT_BRANCH: 'main'
   DEFAULT_USER_NAME: 'github-actions[bot]'
   DEFAULT_USER_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
 
@@ -51,7 +51,7 @@ on:
       branch:
         description: 'Branch to be pruned'
         required: true
-        default: 'master'
+        default: 'main'
       user_name:
         description: 'User who should commit'
         required: true

@@ -1,6 +1,6 @@
 # Branch-Pruner-Easy | GitHub Action Workflow
 # 
-# Description: Truncates the old commit history of the current master branch with minimal settings
+# Description: Truncates the old commit history of the current main branch with minimal settings
 # Author: Sitdisch
 # Source: https://github.com/myactionway/branch-pruner-workflows
 # License: MIT
@@ -21,7 +21,7 @@ env:
   # 
   # THAT'S IT; JUMP TO THE TRIGGERS;
   DEFAULT_REPOSITORY: ${{ github.repository }} # repo with this file
-  DEFAULT_BRANCH: 'master'
+  DEFAULT_BRANCH: 'main'
 
 # TRIGGERS
 on:
