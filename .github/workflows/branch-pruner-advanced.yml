@@ -74,7 +74,7 @@ jobs:
     # THAT'S IT; YOU DON'T HAVE TO DEFINE ANYTHING IN THE FOLLOWING
     ####################################################################
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
         with:
           repository: ${{ matrix.REPOSITORY || env.REPOSITORY }}
           token: ${{ secrets[matrix.TOKEN_NAME] || secrets[env.TOKEN_NAME] }}
