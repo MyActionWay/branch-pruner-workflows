@@ -45,7 +45,8 @@ on:
 
 jobs:
   branch-pruner-easy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v3
         with:
